@@ -1,7 +1,6 @@
 #include "SplayTree.h"
 #include "dsexceptions.h"
 #include <iostream>
-#include <string>
 
 using namespace std;
 
@@ -189,13 +188,12 @@ void SplayTree<Comparable>::splay(const Comparable &x, BinaryNode *&t) {
         } else {
             break;
         }
-
-        leftTreeMax->right = t->left;
-        rightTreeMin->left = t->right;
-        t->left = header.right;
-        t->right = header.left;
-        break;
     }
+
+    leftTreeMax->right = t->left;
+    rightTreeMin->left = t->right;
+    t->left = header.right;
+    t->right = header.left;
 }
 
 // Function to insert a new element x in splay tree
@@ -206,16 +204,12 @@ void SplayTree<Comparable>::insert(const Comparable &x) {
     if (!search(x)) {
         newNode = new BinaryNode;
         newNode->value = 1;
-        cout << "Created new node with element " << x <<
-        " with a value of " << newNode->value << "." << endl;
+        theSize++;
     } else {
         newNode = root;
         newNode->value += 1;
-        cout << "Added 1 to the value of " << x << ", for a value of " <<
-        newNode->value << endl;
     }
 
-    theSize++;
     newNode->element = x;
 
     if (root == nullNode) {
@@ -246,10 +240,8 @@ void SplayTree<Comparable>::insert(const Comparable &x) {
 // Note that this function will update the root of Splay Tree after removing/searching the node
 template<typename Comparable>
 int SplayTree<Comparable>::remove(const Comparable &x) {
-    bool contains = search(x);
-
-    if (contains) {
-        theSize--;
+    if (!search(x)) {
+        return 0;
     }
 
     BinaryNode *newTree;
@@ -262,14 +254,12 @@ int SplayTree<Comparable>::remove(const Comparable &x) {
         newTree->right = root->right;
     }
 
+    int temp = root->value;
     delete root;
     root = newTree;
 
-    if (contains) {
-        return newTree->value;
-    } else {
-        return 0;
-    }
+    theSize--;
+    return temp;
 }
 
 template<typename Comparable>

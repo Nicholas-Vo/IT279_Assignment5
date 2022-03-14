@@ -20,7 +20,7 @@ private:
 
     BinaryNode *root;
     BinaryNode *nullNode;
-    int theSize;
+    int theSize = 0;
 
     void printTree(BinaryNode *t) const;
 
