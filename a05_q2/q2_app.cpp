@@ -10,29 +10,41 @@ int main() {
     cout << "Assignment 03, Question 02 (Your Name): " << endl;
     SplayTree<int> t;
 
-    cout << "Test0: " << endl;
-    t.insert(50);
-    t.insert(30);
-    t.insert(20);
-    t.insert(30);
-    t.insert(40);
-    t.insert(10);
-    t.insert(10);
-    t.insert(10);
-    t.insert(5);
-    t.insert(45);
-    t.insert(20);
-    t.insert(48);
-
-    cout << "The built splay tree is (preorder traversal):" << endl;
+    t.insert(25);
+    t.insert(25);
+    t.insert(25);
+    t.insert(25);
+    t.insert(25);
+    t.insert(25);
+    t.insert(25);
+    t.insert(25);
+    t.insert(25);
+    t.insert(25);
     t.printTree();
-    cout << endl;
 
-    val = t.remove(20);
-    cout << "The value of the removed node is: " << val << endl;
-    cout << "The updated splay tree is (preorder traversal):" << endl;
-    t.printTree();
-    cout << endl;
+//    cout << "Test0: " << endl;
+//    t.insert(50);
+//    t.insert(30);
+//    t.insert(20);
+//    t.insert(30);
+//    t.insert(40);
+//    t.insert(10);
+//    t.insert(10);
+//    t.insert(10);
+//    t.insert(5);
+//    t.insert(45);
+//    t.insert(20);
+//    t.insert(48);
+//
+//    cout << "The built splay tree is (preorder traversal):" << endl;
+//    t.printTree();
+//    cout << endl;
+//
+//    val = t.remove(20);
+//    cout << "The value of the removed node is: " << val << endl;
+//    cout << "The updated splay tree is (preorder traversal):" << endl;
+//    t.printTree();
+//    cout << endl;
 
 //    t.search(26);
 //    cout << "The updated splay tree is (preorder traversal):" << endl;

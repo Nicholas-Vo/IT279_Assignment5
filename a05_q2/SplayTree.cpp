@@ -203,12 +203,16 @@ template<typename Comparable>
 void SplayTree<Comparable>::insert(const Comparable &x) {
     static BinaryNode *newNode = nullptr;
 
-    if (newNode == nullptr) {
+    if (!search(x)) {
         newNode = new BinaryNode;
         newNode->value = 1;
+        cout << "Created new node with element " << x <<
+        " with a value of " << newNode->value << "." << endl;
     } else {
+        newNode = root;
         newNode->value += 1;
-        cout << "New value for " << x << " is " << newNode->value << endl;
+        cout << "Added 1 to the value of " << x << ", for a value of " <<
+        newNode->value << endl;
     }
 
     theSize++;
