@@ -57,7 +57,7 @@ void SplayTree<Comparable>::makeEmpty() {
 template<typename Comparable>
 void SplayTree<Comparable>::printTree(BinaryNode *t) const {
     if (t != t->left) {
-        cout << "(" << t->element << "," << t->value << ")  ";
+        cout << "(" << t->element << ", " << t->value << ")  ";
         printTree(t->left);
         printTree(t->right);
     }
@@ -208,6 +208,7 @@ void SplayTree<Comparable>::insert(const Comparable &x) {
         newNode->value = 1;
     } else {
         newNode->value += 1;
+        cout << "New value for " << x << " is " << newNode->value << endl;
     }
 
     theSize++;
@@ -241,13 +242,12 @@ void SplayTree<Comparable>::insert(const Comparable &x) {
 // Note that this function will update the root of Splay Tree after removing/searching the node
 template<typename Comparable>
 int SplayTree<Comparable>::remove(const Comparable &x) {
-    if (search(x)) {
+    bool contains = search(x);
+
+    if (contains) {
         theSize--;
-    } else {
-        return 0;
     }
 
-    int temp = x;
     BinaryNode *newTree;
 
     if (root->left == nullNode) {
@@ -260,7 +260,12 @@ int SplayTree<Comparable>::remove(const Comparable &x) {
 
     delete root;
     root = newTree;
-    return temp;
+
+    if (contains) {
+        return newTree->value;
+    } else {
+        return 0;
+    }
 }
 
 template<typename Comparable>

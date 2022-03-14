@@ -232,7 +232,6 @@ void SplayTree<Comparable>::insert(const Comparable &x) {
 template<typename Comparable>
 void SplayTree<Comparable>::remove(const Comparable &x) {
     if (!search(x)) {
-        cout << "!search(x)" << endl;
         return;
     }
 
