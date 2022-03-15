@@ -8,10 +8,8 @@ using namespace std;
 
 int main() {
     cout << "\nAssignment 03, Question 03 Nick Voss" << endl;
-    ifstream file;
     string line;
-
-    file.open("query.txt");
+    ifstream file(R"(C:\Users\nvoss\CLionProjects\IT279-Assignment5\a05_q3\enroll.txt)");
 
     if (file.is_open()) {
         while (getline(file, line)) {
