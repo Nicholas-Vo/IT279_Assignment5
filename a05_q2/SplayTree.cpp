@@ -204,13 +204,12 @@ void SplayTree<Comparable>::insert(const Comparable &x) {
     if (!search(x)) {
         newNode = new BinaryNode;
         newNode->value = 1;
+        newNode->element = x;
         theSize++;
     } else {
         newNode = root;
         newNode->value += 1;
     }
-
-    newNode->element = x;
 
     if (root == nullNode) {
         newNode->left = newNode->right = nullNode;

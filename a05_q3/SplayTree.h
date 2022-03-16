@@ -73,6 +73,8 @@ public:
     int remove(const Comparable &x);
 
     int size() const;
+
+    void printTree(BinaryNode *node, bool flg) const;
 };
 
 #endif

@@ -39,18 +39,20 @@ bool SplayTree<Comparable>::isEmpty() const {
 
 template<typename Comparable>
 void SplayTree<Comparable>::printTree() const {
-    if (isEmpty())
+    if (isEmpty()) {
         cout << "Empty tree" << endl;
-    else
-        printTree(root);
+    } else {
+        printTree(root, true);
+    }
 }
 
 template<typename Comparable>
-void SplayTree<Comparable>::makeEmpty() {
-    while (!isEmpty()) {
-        findMax(); // Splay max item to root
-        remove(root->element);
-    }
+void SplayTree<Comparable>::printTree(BinaryNode *node, bool isFirstCall) const {
+     if (isFirstCall) {
+         cout << "First call from root!" << endl;
+     }
+
+    printTree(node);
 }
 
 template<typename Comparable>
@@ -59,6 +61,14 @@ void SplayTree<Comparable>::printTree(BinaryNode *t) const {
         cout << "(" << t->element << ", " << t->value << ")  ";
         printTree(t->left);
         printTree(t->right);
+    }
+}
+
+template<typename Comparable>
+void SplayTree<Comparable>::makeEmpty() {
+    while (!isEmpty()) {
+        findMax(); // Splay max item to root
+        remove(root->element);
     }
 }
 

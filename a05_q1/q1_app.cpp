@@ -5,7 +5,6 @@
 
 using namespace std;
 
-// Testing program
 int main() {
     cout << "Assignment 03, Question 01 Nick Voss: " << endl;
     SplayTree<int> t;
@@ -89,39 +88,39 @@ int main() {
     /*
      * TEST 2
      */
-    cout << "Test2: " << endl;
-    t.insert(60);
-    t.insert(50);
-    t.insert(55);
-    t.insert(58);
-    t.insert(65);
-    t.insert(75);
-    t.insert(80);
-    t.insert(85);
-    t.insert(62);
-
-    cout << "The built splay tree is (preorder traversal):" << endl;
-    t.printTree();
-    cout << endl;
-
-    t.remove(80);
-    t.remove(85);
-    cout << "The updated splay tree after removing 80 and 85 is (preorder traversal):" << endl;
-    t.printTree();
-    cout << endl;
-
-    t.search(10);
-    t.search(75);
-    t.search(59);
-    cout << "The updated splay tree after searching is (preorder traversal):" << endl;
-    t.printTree();
-    cout << endl;
-
-    cout << "The max value of the Splay Tree is: " << t.findMax() << endl;
-    cout << "The min value of the Splay Tree is: " << t.findMin() << endl;
-
-    cout << "The updated splay tree is (preorder traversal):" << endl;
-    t.printTree();
-    cout << endl;
+//    cout << "Test2: " << endl;
+//    t.insert(60);
+//    t.insert(50);
+//    t.insert(55);
+//    t.insert(58);
+//    t.insert(65);
+//    t.insert(75);
+//    t.insert(80);
+//    t.insert(85);
+//    t.insert(62);
+//
+//    cout << "The built splay tree is (preorder traversal):" << endl;
+//    t.printTree();
+//    cout << endl;
+//
+//    t.remove(80);
+//    t.remove(85);
+//    cout << "The updated splay tree after removing 80 and 85 is (preorder traversal):" << endl;
+//    t.printTree();
+//    cout << endl;
+//
+//    t.search(10);
+//    t.search(75);
+//    t.search(59);
+//    cout << "The updated splay tree after searching is (preorder traversal):" << endl;
+//    t.printTree();
+//    cout << endl;
+//
+//    cout << "The max value of the Splay Tree is: " << t.findMax() << endl;
+//    cout << "The min value of the Splay Tree is: " << t.findMin() << endl;
+//
+//    cout << "The updated splay tree is (preorder traversal):" << endl;
+//    t.printTree();
+//    cout << endl;
     return 0;
 }
