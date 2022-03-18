@@ -23,13 +23,6 @@ void fillTree(SplayTree<int> &tree, ifstream &file) {
     }
 }
 
-/*
- * Function to sort pairs by the second value
- */
-bool sortPairBySecondValue(pair<string, int> &a, pair<string, int> &b) {
-    return a.second < b.second;
-}
-
 void sortAndPrintMap(map<string, int> &theMap) {
     vector<pair<string, int>> aVector;
 
@@ -41,10 +34,15 @@ void sortAndPrintMap(map<string, int> &theMap) {
         aVector.emplace_back(pair);
     }
 
-    std::sort(aVector.begin(), aVector.end(), sortPairBySecondValue);
+    /*
+     * Lambda to sort pairs by the second value, not the first
+     */
+    std::sort(aVector.begin(), aVector.end());
+
     std::reverse(aVector.begin(), aVector.end());
 
-    for (const auto& pair: aVector) {
+    cout << "Student IDs sorted in ascending order: " << endl;
+    for (const auto &pair: aVector) {
         cout << pair.first << ": " << pair.second << endl;
     }
 }
@@ -61,44 +59,58 @@ int main() {
 
     fillTree(tree, enroll1);
 
-//    string line;
-//    if (query1.is_open()) {
-//        while (getline(query1, line)) {
-//            int element = stoi(line);
-//            if (tree.search(element)) {
-//                list.emplace_back(tree.remove(element), line);
-//            } else {
-//                list.emplace_back(0, line); // Add with value of 0
-//            }
-//        }
-//        query1.close();
-//    } else {
-//        cout << "Couldn't find the file query2." << endl;
-//    }
-//
-//    list.sort();
-//    list.reverse();
-
-//    for (const auto &pair: list) {
-//        cout << pair.second << ": " << pair.first << endl;
-//    }
-
-    string line2;
-    map<string, int> map;
-
-    if (query1.is_open()) {
-        while (getline(query1, line2)) {
-            int element = stoi(line2);
-            if (tree.search(element)) {
-                int val = tree.remove(element);
-                map.insert(pair<string, int>(line2, val));
-            } else {
-                map.insert(pair<string, int>(line2, 0));
+    if (TEST_PART_A) {
+        string line;
+        if (query1.is_open()) {
+            while (getline(query1, line)) {
+                int element = stoi(line);
+                if (tree.search(element)) {
+                    list.emplace_back(tree.remove(element), line);
+                } else {
+                    list.emplace_back(0, line); // Add with value of 0
+                }
             }
+            query1.close();
+        } else {
+            cout << "Couldn't find the file query2." << endl;
         }
-        query1.close();
+
+        list.sort();
+        list.reverse();
+
+        cout << "Courses sorted in descending order: " << endl;
+        for (const auto &pair: list) {
+            cout << pair.second << ": " << pair.first << endl;
+        }
+
+        cout << "The tree after removal: " << endl;
+        tree.printTree();
     }
 
-    sortAndPrintMap(map);
+    if (TEST_PART_B) {
+        string line2;
+        map<string, int> map;
+
+        if (query1.is_open()) {
+            while (getline(query1, line2)) {
+                int element = stoi(line2);
+                if (tree.search(element)) {
+                    int val = tree.remove(element);
+                    map.insert(pair<string, int>(line2, val));
+                } else {
+                    map.insert(pair<string, int>(line2, 0));
+                }
+            }
+            query1.close();
+        }
+
+        sortAndPrintMap(map);
+
+        /*
+         * Print out the splay tree after removal of IDs within query.txt
+         */
+        cout << "The tree after removal: " << endl;
+        tree.printTree();
+    }
     return 0;
 }

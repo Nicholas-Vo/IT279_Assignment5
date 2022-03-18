@@ -3,3 +3,6 @@
 #define TEST0 1
 #define TEST1 0
 #define TEST2 0
+
+#define TEST_PART_A 0
+#define TEST_PART_B 1
