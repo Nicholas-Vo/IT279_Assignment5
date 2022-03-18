@@ -57,8 +57,15 @@ void SplayTree<Comparable>::printTree(BinaryNode *node, bool isFirstCall) const 
 
 template<typename Comparable>
 void SplayTree<Comparable>::printTree(BinaryNode *t) const {
+    static int printed = 0;
+
     if (t != t->left) {
+        if (printed == 5) {
+            cout << endl;
+            printed = 0;
+        }
         cout << "(" << t->element << ", " << t->value << ")  ";
+        printed++;
         printTree(t->left);
         printTree(t->right);
     }
