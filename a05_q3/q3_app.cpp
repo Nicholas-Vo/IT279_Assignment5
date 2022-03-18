@@ -27,18 +27,14 @@ void sortAndPrintMap(map<string, int> &theMap) {
     vector<pair<string, int>> aVector;
 
     /*
-     * put all map pairs into vector so we can later sort
+     * put all map pairs into vector, so we can later sort it
      */
     aVector.reserve(theMap.size()); // pre-allocate memory first before loop
     for (const auto &pair: theMap) {
         aVector.emplace_back(pair);
     }
 
-    /*
-     * Lambda to sort pairs by the second value, not the first
-     */
     std::sort(aVector.begin(), aVector.end());
-
     std::reverse(aVector.begin(), aVector.end());
 
     cout << "Student IDs sorted in ascending order: " << endl;
@@ -49,20 +45,18 @@ void sortAndPrintMap(map<string, int> &theMap) {
 
 int main() {
     cout << "\nAssignment 03, Question 03 Nick Voss" << endl;
-    ifstream query1(R"(C:\Users\nvoss\CLionProjects\IT279-Assignment5\a05_q3\query.txt)");
-    ifstream query2(R"(C:\Users\nvoss\CLionProjects\IT279-Assignment5\a05_q3\query2.txt)");
-    ifstream enroll1(R"(C:\Users\nvoss\CLionProjects\IT279-Assignment5\a05_q3\enroll.txt)");
-    ifstream enroll2(R"(C:\Users\nvoss\CLionProjects\IT279-Assignment5\a05_q3\enroll2.txt)");
+    ifstream query(R"(C:\Users\nvoss\CLionProjects\IT279-Assignment5\a05_q3\query.txt)");
+    ifstream enroll(R"(C:\Users\nvoss\CLionProjects\IT279-Assignment5\a05_q3\enroll.txt)");
 
     SplayTree<int> tree;
     list<pair<int, string>> list;
 
-    fillTree(tree, enroll1);
+    fillTree(tree, enroll);
 
     if (TEST_PART_A) {
         string line;
-        if (query1.is_open()) {
-            while (getline(query1, line)) {
+        if (query.is_open()) {
+            while (getline(query, line)) {
                 int element = stoi(line);
                 if (tree.search(element)) {
                     list.emplace_back(tree.remove(element), line);
@@ -70,15 +64,15 @@ int main() {
                     list.emplace_back(0, line); // Add with value of 0
                 }
             }
-            query1.close();
+            query.close();
         } else {
-            cout << "Couldn't find the file query2." << endl;
+            cout << "Couldn't find the file query." << endl;
         }
 
         list.sort();
         list.reverse();
 
-        cout << "Courses sorted in descending order: " << endl;
+        cout << "Courses sorted by value in descending order: " << endl;
         for (const auto &pair: list) {
             cout << pair.second << ": " << pair.first << endl;
         }
@@ -91,8 +85,8 @@ int main() {
         string line2;
         map<string, int> map;
 
-        if (query1.is_open()) {
-            while (getline(query1, line2)) {
+        if (query.is_open()) {
+            while (getline(query, line2)) {
                 int element = stoi(line2);
                 if (tree.search(element)) {
                     int val = tree.remove(element);
@@ -101,7 +95,9 @@ int main() {
                     map.insert(pair<string, int>(line2, 0));
                 }
             }
-            query1.close();
+            query.close();
+        } else {
+            cout << "Couldn't find the file query." << endl;
         }
 
         sortAndPrintMap(map);
