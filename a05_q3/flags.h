@@ -4,5 +4,5 @@
 #define TEST1 0
 #define TEST2 0
 
-#define TEST_PART_A 1
 #define TEST_PART_B 0
+#define TEST_PART_C 1

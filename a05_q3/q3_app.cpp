@@ -45,15 +45,19 @@ void sortAndPrintMap(map<string, int> &theMap) {
 
 int main() {
     cout << "\nAssignment 03, Question 03 Nick Voss" << endl;
-    ifstream query(R"(C:\Users\nvoss\CLionProjects\IT279-Assignment5\a05_q3\query.txt)");
-    ifstream enroll(R"(C:\Users\nvoss\CLionProjects\IT279-Assignment5\a05_q3\enroll.txt)");
+
+    /*
+     * must change these file paths if using IntelliJ
+     */
+    ifstream query("query.txt");
+    ifstream enroll("enroll.txt");
 
     SplayTree<int> tree;
     list<pair<int, string>> list;
 
     fillTree(tree, enroll);
 
-    if (TEST_PART_A) {
+    if (TEST_PART_B) {
         string line;
         if (query.is_open()) {
             while (getline(query, line)) {
@@ -66,7 +70,7 @@ int main() {
             }
             query.close();
         } else {
-            cout << "Couldn't find the file query." << endl;
+            cout << "Couldn't find the file." << endl;
         }
 
         list.sort();
@@ -81,7 +85,7 @@ int main() {
         tree.printTree();
     }
 
-    if (TEST_PART_B) {
+    if (TEST_PART_C) {
         string line2;
         map<string, int> map;
 
@@ -89,15 +93,14 @@ int main() {
             while (getline(query, line2)) {
                 int element = stoi(line2);
                 if (tree.search(element)) {
-                    int val = tree.remove(element);
-                    map.insert(pair<string, int>(line2, val));
+                    map.insert(pair<string, int>(line2, tree.remove(element)));
                 } else {
                     map.insert(pair<string, int>(line2, 0));
                 }
             }
             query.close();
         } else {
-            cout << "Couldn't find the file query." << endl;
+            cout << "Couldn't find the file." << endl;
         }
 
         sortAndPrintMap(map);
